@@ -9,9 +9,13 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,11 +28,13 @@ public class FileStorageService {
 
 
     @Autowired
-    public FileStorageService(FileStorageProperties fileStorageProperties) throws IOException {
+    public FileStorageService(FileStorageProperties fileStorageProperties) throws IOException, URISyntaxException {
         String uploadPath = "/";;
         URL uploadPathResource =getClass().getResource(uploadPath);
-        String path=uploadPathResource.getPath();
-        this.fileStorageLocation = Paths.get(path+fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
+        URI uri=uploadPathResource.toURI();
+
+//        String path=Paths.get(Paths.get(uri).toAbsolutePath().toString()+"/"+fileStorageProperties.getUploadDir());
+        this.fileStorageLocation = Paths.get(Paths.get(uri).toAbsolutePath().toString()+"/"+fileStorageProperties.getUploadDir());
 //        try{
             Files.createDirectories(this.fileStorageLocation);
 //        }catch(Exception ex){
