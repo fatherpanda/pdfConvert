@@ -1,0 +1,58 @@
+package com.dipol.pdfconvert.data.entity;
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+
+@Entity
+@IdClass(Da02PK.class)
+@Data
+public class Da02 {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "acc_no")
+    private String accNo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "event_no")
+    private int eventNo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "dssad_code")
+    private String dssadCode;
+    @Basic
+    @Column(name = "sort_order")
+    private Integer sortOrder;
+    @Basic
+    @Column(name = "attr")
+    private String attr;
+    @Basic
+    @Column(name = "recode_time")
+    private String recodeTime;
+    @Basic
+    @Column(name = "recode_value")
+    private String recodeValue;
+    @Basic
+    @Column(name = "add_user")
+    private String addUser;
+    @Basic
+    @Column(name = "add_date")
+    private Timestamp addDate;
+    @Basic
+    @Column(name = "add_ip")
+    private String addIp;
+    @Basic
+    @Column(name = "update_user")
+    private String updateUser;
+    @Basic
+    @Column(name = "update_date")
+    private Timestamp updateDate;
+    @Basic
+    @Column(name = "update_ip")
+    private String updateIp;
+    @Basic
+    @Column(name = "bigo")
+    private String bigo;
+
+}

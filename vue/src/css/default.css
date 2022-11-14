@@ -1,0 +1,22 @@
+.popup {
+  width: 90vw;
+  max-width: 750px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #efefef;
+  border: #cccccc;
+  border-radius: 15px;
+  padding: 25px;
+}
+.popup .container {
+  padding-top: 25px;
+}
+.popup .container .btn-close {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+}
+
+/*# sourceMappingURL=default.css.map */
