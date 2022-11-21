@@ -3,7 +3,7 @@ package com.dipol.pdfconvert.data.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+
 import java.util.Date;
 
 @Entity

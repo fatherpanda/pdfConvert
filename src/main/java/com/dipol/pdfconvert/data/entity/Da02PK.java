@@ -1,26 +1,21 @@
 package com.dipol.pdfconvert.data.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Embeddable
+@AllArgsConstructor
+@NoArgsConstructor
 public class Da02PK implements Serializable {
-    @Column(name = "acc_no")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String accNo;
-    @Column(name = "event_no")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int eventNo;
-    @Column(name = "dssad_code")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer eventNo;
     private String dssadCode;
 
 }

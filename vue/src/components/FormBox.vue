@@ -8,7 +8,7 @@
         </template>
         <template v-else>
           <div class="form-check-inline" v-for="(rowData,i) in row.data" :key="rowData">
-            <input class="form-check-input" type="radio" :id="row.field+'_'+i" v-bind:value="rowData.val" @click="$props.data[row.field]=rowData.val">
+            <input class="form-check-input" type="radio" :id="row.field+'_'+i" v-bind:value="rowData.val" @click="$props.data[row.field]=rowData.val" v-bind:checked="rowData.val==$props.data[row.field]">
             <label class="form-check-label" :for="row.field+'_'+i">
               {{ rowData.name }}
             </label>

@@ -1,3 +1,65 @@
+:root {
+  --dark-blue: #1c3445;
+  --soft-blue: #355061;
+  --text-indark: #a5bbcb;
+  --button-color: #147caf;
+}
+
+.header {
+  background-color: var(--soft-blue);
+  font-size: 18px;
+  padding: 20px 0 20px 30px;
+  color: #e5e5e5;
+}
+
+.splash {
+  width: 100%;
+  height: 100%;
+  background-image: url("src/assets/splash.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+}
+
+.module-name {
+  background-color: white;
+  height: 40px;
+}
+
+.main-menu-container {
+  background-color: var(--dark-blue);
+  padding: 20px 30px;
+}
+.main-menu-container button {
+  width: 110px;
+  margin-right: 10px;
+  background-color: var(--button-color);
+  border: none;
+}
+
+.logo-container {
+  padding: 40px;
+  background-color: var(--dark-blue);
+}
+
+.logo {
+  height: 160px;
+  background-image: url("src/assets/tclog.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination {
+  height: 110px;
+}
+
 .popup {
   width: 90vw;
   max-width: 750px;
@@ -5,18 +67,75 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #efefef;
+  border: 1px solid #cbd6dd;
+  box-shadow: 1px 1px 2px 0px #888888;
   border: #cccccc;
-  border-radius: 15px;
-  padding: 25px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 0;
+}
+.popup-header {
+  background-color: var(--dark-blue);
+  height: 50px;
 }
 .popup .container {
-  padding-top: 25px;
+  padding: 25px;
 }
 .popup .container .btn-close {
   position: absolute;
   right: 25px;
   top: 15px;
+  filter: invert(1);
+}
+.popup .text-end button {
+  background-color: var(--button-color);
+  width: 100px;
+}
+
+.side-menu {
+  padding: 0;
+}
+.side-menu li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+  height: 40px;
+  /* padding-left:20px; */
+}
+.side-menu li:hover {
+  background-color: #19aac7;
+  color: white !important;
+}
+.side-menu li:hover a {
+  color: white !important;
+}
+.side-menu li a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: var(--text-indark);
+  text-decoration: none;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.active > .page-link,
+.page-link.active {
+  color: var(--bs-pagination-active-color);
+  background-color: #3c9500;
+  border-color: #3c9500;
+}
+
+.page-link {
+  color: black;
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: #6c757d;
+  --bs-btn-border-color: #6c757d;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #13853c;
 }
 
 /*# sourceMappingURL=default.css.map */

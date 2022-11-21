@@ -32,4 +32,8 @@ public class Aa02Service {
     public Aa02 write(Aa02 aa02) {
         return aa02Repository.saveAndFlush(aa02);
     }
+    public List<Aa02> selectCode(String gubn)
+    {
+        return aa02Repository.selectByGubn(gubn);
+    }
 }

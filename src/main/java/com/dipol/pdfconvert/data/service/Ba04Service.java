@@ -1,6 +1,5 @@
 package com.dipol.pdfconvert.data.service;
 
-
 import com.dipol.pdfconvert.data.entity.Ba04;
 import com.dipol.pdfconvert.data.entity.Ba04PK;
 import com.dipol.pdfconvert.data.repository.Ba04Repository;
@@ -23,11 +22,20 @@ public class Ba04Service {
     public boolean delete(List<Ba04PK> ba04PKList) {
         boolean isResult = true;
 
-        if (0 == 0) { //추후 사용자 권한설정을 위한 조건
+        if (0 == 0) { // 추후 사용자 권한설정을 위한 조건
             ba04Repository.deleteAllById(ba04PKList);
-            List<Ba04> aa02List = ba04Repository.findAllById(ba04PKList);
-            if (aa02List.size() > 0) isResult = false;
+            List<Ba04> ba04List = ba04Repository.findAllById(ba04PKList);
+            if (ba04List.size() > 0)
+                isResult = false;
         }
         return isResult;
+    }
+
+    public List<String> reportVersion() {
+        return ba04Repository.getReportVersion();
+    }
+
+    public List<Ba04> list(String reportVersion) {
+        return ba04Repository.getListByReportVersiton(reportVersion);
     }
 }

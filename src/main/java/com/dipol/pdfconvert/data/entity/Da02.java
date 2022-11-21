@@ -3,24 +3,14 @@ package com.dipol.pdfconvert.data.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+
+import java.util.Date;
 
 @Entity
-@IdClass(Da02PK.class)
 @Data
 public class Da02 {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "acc_no")
-    private String accNo;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "event_no")
-    private int eventNo;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "dssad_code")
-    private String dssadCode;
+    @EmbeddedId
+    Da02PK da02PK;
     @Basic
     @Column(name = "sort_order")
     private Integer sortOrder;
@@ -38,7 +28,7 @@ public class Da02 {
     private String addUser;
     @Basic
     @Column(name = "add_date")
-    private Timestamp addDate;
+    private Date addDate;
     @Basic
     @Column(name = "add_ip")
     private String addIp;
@@ -47,7 +37,7 @@ public class Da02 {
     private String updateUser;
     @Basic
     @Column(name = "update_date")
-    private Timestamp updateDate;
+    private Date updateDate;
     @Basic
     @Column(name = "update_ip")
     private String updateIp;

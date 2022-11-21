@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-PdfConvertApplication<pdfConvert>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.dipol.pdfconvert.PdfConvertApplication",
+      "projectName": "pdfConvert",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

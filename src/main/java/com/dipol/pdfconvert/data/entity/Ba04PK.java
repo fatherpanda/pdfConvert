@@ -14,8 +14,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ba04PK implements Serializable {
-    private String toolVersion;
+
     private String reportVersion;
-    private String code;
+    private String dssadCode;
 
 }

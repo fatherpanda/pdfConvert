@@ -13,34 +13,32 @@ import com.adobe.pdfservices.operation.pdfops.options.extractpdf.ExtractRenditio
 import com.adobe.pdfservices.operation.pdfops.options.extractpdf.TableStructureType;
 import com.dipol.pdfconvert.lib.CmdExecutor;
 import com.dipol.pdfconvert.property.FileStorageProperties;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.logging.Logger;
 
 @Service
 public class AdobeService {
     @Autowired
     FileStorageProperties fileStorageProperties;
 
-    public void executor(String filePath, String fileName) throws IOException, InterruptedException
-    {
-        //adobeService.convert(fileStorageService.fileStorageLocation.toString(), fileName);
-        CmdExecutor cmdExecutor=new CmdExecutor(fileStorageProperties);
-        boolean isWindow=System.getProperty("os.name").toLowerCase().startsWith("windows");
-        System.out.println("::this OS "+(isWindow?"window":"mac"));
+    public void executor(String filePath, String fileName) throws IOException, InterruptedException {
+        // adobeService.convert(fileStorageService.fileStorageLocation.toString(),
+        // fileName);
+        CmdExecutor cmdExecutor = new CmdExecutor(fileStorageProperties);
+        boolean isWindow = System.getProperty("os.name").toLowerCase().startsWith("windows");
+        System.out.println("::this OS " + (isWindow ? "window" : "mac"));
         cmdExecutor.processBuilder(isWindow);
-        //cmdExecutor.processBuilder(isWindow);
+        // cmdExecutor.processBuilder(isWindow);
     }
 
-    public void convert(String filePath, String fileName)
-    {
+    public String convert(String filePath, String fileName) {
+        String fileNameZip = "";
         Credentials credentials = null;
         try {
+            fileNameZip = fileName.substring(0, fileName.lastIndexOf(".")) + ".zip";
             credentials = Credentials.serviceAccountCredentialsBuilder()
                     .fromFile("pdfservices-api-credentials.json")
                     .build();
@@ -50,7 +48,7 @@ public class AdobeService {
             ExtractPDFOperation extractPDFOperation = ExtractPDFOperation.createNew();
 
             // Provide an input FileRef for the operation
-            FileRef source = FileRef.createFromLocalFile(filePath+"/"+fileName);
+            FileRef source = FileRef.createFromLocalFile(filePath + "/" + fileName);
             extractPDFOperation.setInputFile(source);
 
             // Build ExtractPDF options and set them into the operation
@@ -65,11 +63,11 @@ public class AdobeService {
             FileRef result = extractPDFOperation.execute(executionContext);
 
             // Save the result at the specified location
-            result.saveAs(filePath+"/"+fileName+".zip");
-        } catch (ServiceApiException | IOException |
-                 SdkException | ServiceUsageException ex) {
-            System.out.println("Exception encountered while executing operation"+ ex);
+            result.saveAs(filePath + "/" + fileNameZip);
+        } catch (ServiceApiException | IOException | SdkException | ServiceUsageException ex) {
+            System.out.println("Exception encountered while executing operation" + ex);
         }
+        return fileNameZip;
     }
 
 }

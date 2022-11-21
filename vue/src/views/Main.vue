@@ -1,5 +1,7 @@
 <template>
-메인페이지
+  <div class="h-100">
+    <div id="splash" class="splash"></div>
+  </div>
 </template>
 
 <script>

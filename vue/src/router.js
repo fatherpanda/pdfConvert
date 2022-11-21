@@ -3,43 +3,68 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
     {
         name: "Main",
+        path: '/',
         component: () => import("/@views/MainWarp.vue"),
         children: [
             {
                 path: '/',
                 name: 'INDEX',
                 component: () => import("/@views/Main.vue"),
-                props:true,
+                props: true,
             },
             {
                 path: '/aa01',
                 name: 'AA01',
                 component: () => import("/@views/Aa01.vue"),
-                props:true,
+                props: true,
+            },
+            {
+                path: '/aa01_2',
+                name: 'AA01_2',
+                component: () => import("/@views/Aa01_2.vue"),
+                props: true,
             },
             {
                 path: '/aa02',
                 name: 'AA02',
                 component: () => import("/@views/Aa02.vue"),
-                props:true,
+                props: true,
             },
             {
                 path: '/aa04',
                 name: 'AA04',
                 component: () => import("/@views/Aa04.vue"),
-                props:true,
+                props: true,
             },
             {
                 path: '/ba02',
                 name: 'BA02',
                 component: () => import("/@views/Ba02.vue"),
-                props:true,
+                props: true,
             },
             {
                 path: '/ba04',
                 name: 'BA04',
                 component: () => import("/@views/Ba04.vue"),
-                props:true,
+                props: true,
+            },
+            {
+                path: '/da01Write',
+                name: 'DA01WRITE',
+                component: () => import("/@views/Da01Write.vue"),
+                props: true,
+            },
+            {
+                path: '/da01',
+                name: 'DA01',
+                component: () => import("/@views/Da01.vue"),
+                props: true,
+            },
+            {
+                path: '/da02',
+                name: 'DA02',
+                component: () => import("/@views/Da02.vue"),
+                props: true,
             },
         ]
 
@@ -170,7 +195,7 @@ const routes = [
         //
         // ]
     },
-    
+
 
 ];
 
@@ -185,7 +210,7 @@ const router = createRouter({
 
 
 // login guard
- router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
 
     // const loginStore = LoginStore()
     // const token=loginStore.getToken
@@ -203,35 +228,35 @@ const router = createRouter({
 
     next();
 
-/*
-
-alert('로그인 해주세요');
-return next('/login');
-if (to.path == "/") {
-
-    const result = sessionCheck()
-    if (token === "") {
-        next('/login');
+    /*
+    
+    alert('로그인 해주세요');
+    return next('/login');
+    if (to.path == "/") {
+    
+        const result = sessionCheck()
+        if (token === "") {
+            next('/login');
+        } else {
+            next();
+        }
+        // result.then((response) => {
+        //     if (response.nvm_id === "") {
+        //         next('/login');
+        //     } else {
+        //         next();
+        //     }
+        //         console.log(response)
+        //         // if (!isLoggedIn) {
+        //         //     next(false);
+        //         //     auth.login();
+        //         // } else {
+        //         // }
+        // })
     } else {
         next();
     }
-    // result.then((response) => {
-    //     if (response.nvm_id === "") {
-    //         next('/login');
-    //     } else {
-    //         next();
-    //     }
-    //         console.log(response)
-    //         // if (!isLoggedIn) {
-    //         //     next(false);
-    //         //     auth.login();
-    //         // } else {
-    //         // }
-    // })
-} else {
-    next();
-}
-*/
+    */
 });
 
 export default router;
