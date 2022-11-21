@@ -1,17 +1,17 @@
 package com.dipol.pdfconvert.data.repository.impl;
 
-import com.dipol.pdfconvert.data.entity.Aa01;
-import com.dipol.pdfconvert.data.repository.custom.Aa01CustomRepository;
+import com.dipol.pdfconvert.data.entity.Da01;
+import com.dipol.pdfconvert.data.repository.custom.Da01CustomRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class Aa01RepositoryImpl extends QuerydslRepositorySupport implements Aa01CustomRepository {
+public class Da01RepositoryImpl extends QuerydslRepositorySupport implements Da01CustomRepository {
     private final JPAQueryFactory queryFactory;
 
-    public Aa01RepositoryImpl(JPAQueryFactory queryFactory) {
-        super(Aa01.class);
+    public Da01RepositoryImpl(JPAQueryFactory queryFactory) {
+        super(Da01.class);
         this.queryFactory = queryFactory;
     }
 }

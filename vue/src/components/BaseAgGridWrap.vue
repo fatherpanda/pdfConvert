@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="btn-box mb-3">
-      <button class="btn btn-primary" @click="writeBtnClick">등록</button>
-      <button class="btn btn-primary" @click="deleteBtnClick">삭제</button>
-    </div>
+
     <ag-grid-vue
         class="ag-theme-alpine"
         style="height: 500px"
@@ -16,16 +13,7 @@
         @grid-ready="baseConfig.onGridReady"
     >
     </ag-grid-vue>
-    <pagination :page="config.params.page" :size="config.params.size" :total-page="config.totalPage" v-on:change="changePage" v-if="config.totalPage>0"/>
-    <popup v-if="siteConfig.isPopup" v-model:isOpen="siteConfig.isPopup">
-      <form ref="writeForm" @submit="writeSubmit">
-        <form-box :write-field="fieldConfig.write" :data="data"></form-box>
-        <div class="text-end">
-          <button class="btn btn-secondary">등록</button>
-        </div>
-      </form>
 
-    </popup>
   </div>
 
 </template>
@@ -34,9 +22,6 @@
 import { AgGridVue } from "ag-grid-vue3"
 import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import Popup from "/@components/Popup.vue";
-import FormBox from "/@components/FormBox.vue";
-import Pagination from "/@components/Pagination.vue";
 import {onMounted, reactive, ref} from "vue";
 import AgGridEditDelCell from "/@components/AgGridEditDelCell.vue";
 
@@ -44,9 +29,6 @@ export default {
   name: "BaseAgGrid",
   components:{
     AgGridVue,
-    Popup,
-    FormBox,
-    Pagination,
   },
   props:{
     defaultData: {
@@ -68,23 +50,6 @@ export default {
     }
     const rowDel=(data) =>{
       console.log(data)
-    }
-    const writeBtnClick=()=>{
-      siteConfig.value.isPopup=true
-    }
-    const writeSubmit=(e)=>{
-      e.preventDefault()
-      const result=config.value.write(data.value)
-      result.then((response) => {
-        data.value=Object.assign({},dataDefault)
-        config.value.loadList()
-        siteConfig.value.isPopup=false
-      }).catch((error) => {
-        console.log(error)
-      })
-    }
-    const deleteBtnClick=()=>{
-      config.value.delete(baseConfig.value.gridApi.getSelectedRows())
     }
 
     const defaultData=props.defaultData
@@ -154,13 +119,16 @@ export default {
 
     }
     const changePage=(page) =>{
-      console.log(page)
+      // console.log(page)
       config.value.params.page=page
       config.value.loadList()
     }
     onMounted(()=>{
-      config.value.loadList()
-      console.log(writeForm)
+      console.log(config.value.mountLoad)
+      if (config.value.mountLoad == undefined || config.value.mountLoad) {
+        config.value.loadList()
+      }
+      // console.log(writeForm)
     })
     return {
       siteConfig,
@@ -170,8 +138,6 @@ export default {
       data,
       cellWasClicked,
       changePage,
-      writeBtnClick,
-      deleteBtnClick
     }
   }
 }

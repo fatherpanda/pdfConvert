@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-import {deleteAa02, getAa02List, Page} from "../api";
+import {deleteAa02, getAa02List, getAa02SelectCode,Page} from "../api";
 
 export interface aa02Type {
     aa02PK: Aa02Pk
@@ -40,6 +40,10 @@ export const Aa02Store = defineStore("Aa02Store",
     {
         state: () => ({
             aa02List:[] as aa02Type[],
+            code:{
+                BA0103:[] as aa02Type[],
+                BA0105:[] as aa02Type[]
+            },
         }),
         getters: {
 
@@ -52,6 +56,15 @@ export const Aa02Store = defineStore("Aa02Store",
             delete(params : Aa02Pk[]) {
                 return deleteAa02(params)
             },
+            getCode(gubn:String) {
+                const result=getAa02SelectCode(gubn)
+                result.then((response)=>{
+                    // @ts-ignore
+                    this.code[gubn]=response
+                }).catch((error)=>{
+                    console.log(error)
+                })
+            }
 
         }
     })

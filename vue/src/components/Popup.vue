@@ -1,5 +1,6 @@
 <template>
   <div class="popup">
+    <div class="popup-header"></div>
     <div class="container">
       <button class="btn-close" @click="$emit('update:isOpen', false)"></button>
       <slot></slot>

@@ -39,7 +39,7 @@ export default {
         config.value.gridApi = params.api
       },
       columnDefs:{value:[
-          {headerName:'DSSAD 툴 버전', field:'ba04PK.toolVersion',checkboxSelection: true,},
+          {headerName:'리포트 버전', field:'ba04PK.toolVersion',checkboxSelection: true,},
           {headerName:'DSSAD 리포트', field:'ba04PK.reportVersion'},
           {headerName:'디스플레이순서', field:'sortOrder'},
           {headerName:'카테고리', field:'subOrder'},
