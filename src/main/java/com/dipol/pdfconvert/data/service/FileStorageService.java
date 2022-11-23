@@ -48,8 +48,7 @@ public class FileStorageService {
         String uploadPath = "/";
         URL uploadPathResource = getClass().getResource(uploadPath);
         URI path = uploadPathResource.toURI();
-
-        Path fileRealPath = Paths.get(Paths.get(path.getPath()) + "/" + fileStorageProperties.getUploadDir())
+        Path fileRealPath = Paths.get(Paths.get(path) + "/" + fileStorageProperties.getUploadDir())
                 .toAbsolutePath()
                 .normalize();
         this.fileStorageLocation = fileRealPath;

@@ -37,6 +37,7 @@ public class Scheduler {
     Ba04Service ba04Service;
     @Autowired
     FileStorageService fileStorageService;
+
     boolean isConvert = false;
     // @Scheduled(cron = "0 * 9 * * ?")
     // public void cronJobSch() {
