@@ -1,120 +1,106 @@
 <template>
-  <div>
+  <div class="form-row">
     <form @submit="sendSubmit">
-    <div class="card">
-      <div class="card-header">
-        <div class="row justify-content-between">
-          <div class="col-auto">
-            DSSAD 등록
-          </div>
-          <div class="col-auto">
-
-
-            <button class="btn btn-outline-secondary">
-              등록
-            </button>
-          </div>
+      <div class="row mb-2">
+        <div class="col-2 col-form-label">
+          <span class="text-danger">*</span>
+          사고번호
         </div>
-
+        <div class="col-6">
+          <input type="text" class="form-control form-control-sm" v-model="da01.accNo" required>
+        </div>
       </div>
-      <div class="card-body">
-          <div class="row mb-3">
-            <div class="col-2 col-form-label">
-              <span class="text-danger">*</span>
-              사고번호
-            </div>
-            <div class="col-6">
-              <input type="text" class="form-control" v-model="da01.accNo" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-2 col-form-label">
-              <span class="text-danger">*</span>
-              리포트버전
-            </div>
-            <div class="col-2">
-              <select class="form-select" v-model="da01.reportVersion" required>
-                <option value="">선택하세요</option>
-                <template v-if="reportVersion.length>0">
-                  <option v-for="ver in reportVersion" :key="ver" :value="ver">{{ver}}</option>
-                </template>
-              </select>
-            </div>
-            <div class="col-2 col-form-label">
-              제조사
-            </div>
-            <div class="col-2">
-              <select class="form-select" v-model="da01.prodName">
-                <option value="">선택하세요</option>
-                <template v-if="code.BA0103.length > 0">
-                  <option v-for="maker in code.BA0103" :key="maker" :value="maker.aa02PK.code">{{maker.cname}}</option>
-                </template>
-              </select>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-2 col-form-label">
-              차종 정보
-            </div>
-            <div class="col-2">
-              <input type="text" class="form-control" v-model="da01.carDesc">
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-2 col-form-label">
-              차대 번호
-            </div>
-            <div class="col-2">
-              <input type="text" class="form-control" v-model="da01.vin">
-            </div>
-            <div class="col-2 col-form-label">
-              툴 버전
-            </div>
-            <div class="col-2">
-              <input type="text" class="form-control" v-model="da01.toolVersion">
+      <div class="row mb-2">
+        <div class="col-2 col-form-label">
+          <span class="text-danger">*</span>
+          리포트버전
+        </div>
+        <div class="col-2">
+          <select class="form-select form-select-sm" v-model="da01.reportVersion" required>
+            <option value="">선택하세요</option>
+            <template v-if="reportVersion.length>0">
+              <option v-for="ver in reportVersion" :key="ver" :value="ver">{{ver}}</option>
+            </template>
+          </select>
+        </div>
+        <div class="col-2 col-form-label">
+          제조사
+        </div>
+        <div class="col-2">
+          <select class="form-select form-select-sm" v-model="da01.prodName">
+            <option value="">선택하세요</option>
+            <template v-if="code.BA0103.length > 0">
+              <option v-for="maker in code.BA0103" :key="maker" :value="maker.aa02PK.code">{{maker.cname}}</option>
+            </template>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-2 col-form-label">
+          차종 정보
+        </div>
+        <div class="col-2">
+          <input type="text" class="form-control form-control-sm" v-model="da01.carDesc">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-2 col-form-label">
+          차대 번호
+        </div>
+        <div class="col-2">
+          <input type="text" class="form-control form-control-sm" v-model="da01.vin">
+        </div>
+        <div class="col-2 col-form-label">
+          툴 버전
+        </div>
+        <div class="col-2">
+          <input type="text" class="form-control form-control-sm" v-model="da01.toolVersion">
 <!--              <select class="form-select" v-model="da01.toolVersion"></select>-->
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-2 col-form-label">
-              사용자
-            </div>
-            <div class="col-2">
-              <input type="text" class="form-control" v-model="da01.addUser">
-            </div>
-            <div class="col-2 col-form-label">
-              <span class="text-danger">*</span>
-              PDF 업로드
-            </div>
-            <div class="col">
-              <input type="file" class="form-control" ref="pdfFile" @change="fileSelect" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-2 col-form-label">
-              기록날자
-            </div>
-            <div class="col-2">
-              <input type="text" class="form-control" v-model="da01.addDate">
-            </div>
-            <div class="col-2 col-form-label">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-2 col-form-label">
+          사용자
+        </div>
+        <div class="col-2">
+          <input type="text" class="form-control form-control-sm" v-model="da01.addUser">
+        </div>
+        <div class="col-2 col-form-label">
+          <span class="text-danger">*</span>
+          PDF 업로드
+        </div>
+        <div class="col">
+          <input type="file" class="form-control form-control-sm" ref="pdfFile" @change="fileSelect" required>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-2 col-form-label">
+          기록날자
+        </div>
+        <div class="col-2">
+          <input type="text" class="form-control form-control-sm" v-model="da01.addDate">
+        </div>
+        <div class="col-2 col-form-label">
 
-            </div>
-            <div class="col">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-2 col-form-label">
-              메모
-            </div>
-            <div class="col">
-              <textarea class="form-control" v-model="da01.bigo"></textarea>
-            </div>
-          </div>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control form-control-sm">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-2 col-form-label">
+          메모
+        </div>
+        <div class="col">
+          <textarea class="form-control form-control-sm" v-model="da01.bigo"></textarea>
+        </div>
+      </div>
+      <div class="text-end">
+        <button class="btn btn-secondary"><i class="fa fa-plus-circle" aria-hidden="true"></i> 등록</button>
 
       </div>
-    </div>
+
+
     </form>
   </div>
 </template>

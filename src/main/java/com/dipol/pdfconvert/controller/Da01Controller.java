@@ -46,30 +46,6 @@ public class Da01Controller {
     public Map<String, Object> da01Write(Da01 da01, @RequestParam("pdfFile") MultipartFile pdfFile,
             HttpServletRequest request) throws URISyntaxException, IOException {
         String uuidFilename = fileStorageService.storeFile(pdfFile);
-        // String uploadPath = "/";;
-        // URL uploadPathResource =getClass().getResource(uploadPath);
-        // URI path=uploadPathResource.toURI();
-        //
-        // Path fileRealPath =
-        // Paths.get(path.getPath()+fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
-        // UUID uuid = UUID.randomUUID();
-        // String uuidFilename = uuid + "_" + pdfFile.getOriginalFilename();
-        //
-        // Path filePath = Paths.get(fileRealPath +"/" +uuidFilename);
-        // if (!Files.exists(filePath)) {
-        // Files.createFile(filePath);
-        // }
-        //
-        // AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(filePath,
-        // StandardOpenOption.WRITE);
-        //
-        // ByteBuffer buffer = ByteBuffer.allocate((int) pdfFile.getSize());
-        //
-        // buffer.put(pdfFile.getBytes());
-        // buffer.flip();
-        //
-        // Future<Integer> operation = fileChannel.write(buffer, 0);
-        // buffer.clear();
 
         // while (!operation.isDone());
         String userId = "";
@@ -89,4 +65,5 @@ public class Da01Controller {
         resultMap.put("result", isResult);
         return resultMap;
     }
+
 }

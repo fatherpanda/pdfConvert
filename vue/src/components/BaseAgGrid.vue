@@ -17,7 +17,7 @@
     >
     </ag-grid-vue>
     <pagination :page="config.params.page" :size="config.params.size" :total-page="config.totalPage" v-on:change="changePage" v-if="config.totalPage>0"/>
-    <popup v-if="siteConfig.isPopup" v-model:isOpen="siteConfig.isPopup">
+    <popup v-if="siteConfig.isPopup" v-model:isOpen="siteConfig.isPopup" :title="siteConfig.pop">
       <form ref="writeForm" @submit="writeSubmit">
         <form-box :write-field="fieldConfig.write" :data="data"></form-box>
         <div class="text-end">
@@ -58,24 +58,27 @@ export default {
   },
   setup(props) {
     const siteConfig=ref({
-      isPopup:false
+      isPopup:false,
+      popupTitle:""
     })
     const config=ref(props.config)
     const rowEdit=(rowData) =>{
       data.value=rowData
       writeBtnClick()
+      siteConfig.value.popupTitle = "수정"
     }
     const rowDel=(data) =>{
       console.log(data)
     }
     const writeBtnClick=()=>{
       siteConfig.value.isPopup=true
+      siteConfig.value.popupTitle="등록"
     }
     const writeSubmit=(e)=>{
       e.preventDefault()
       const result=config.value.write(data.value)
       result.then((response) => {
-        data.value=Object.assign({},dataDefault)
+        data.value=Object.assign({},fieldConfig.value.dataDefault)
         config.value.loadList()
         siteConfig.value.isPopup=false
       }).catch((error) => {
@@ -103,6 +106,7 @@ export default {
           const write=Object.assign({headerName:row.headerName,field:row.field}, row.writeOption)
           let dataDefault=fieldConfig.value.dataDefault
           let field=row.field
+          
           if(field.indexOf(".")>-1) {
 
             let key=field.substring(0, field.indexOf("."))
@@ -153,12 +157,10 @@ export default {
 
     }
     const changePage=(page) =>{
-      console.log(page)
       config.value.params.page=page
       config.value.loadList()
     }
     onMounted(()=>{
-      console.log(config.value.mountLoad)
       if (config.value.mountLoad == undefined || config.value.mountLoad) {
       config.value.loadList()
       }
@@ -176,7 +178,8 @@ export default {
       cellWasClicked,
       changePage,
       writeBtnClick,
-      deleteBtnClick
+      deleteBtnClick,
+      writeSubmit
     }
   }
 }

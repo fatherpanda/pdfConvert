@@ -32,7 +32,7 @@
             <div class="col-2 pe-4">
               <input type="text" class="form-control">
             </div>
-            <div class="col-auto ms-auto"><button class="btn btn-primary" @click="changePage(0)">검색</button></div>
+            <div class="col-auto ms-auto"><button class="btn btn-primary" @click="config.loadList">검색</button></div>
           </div>
           
 
@@ -40,8 +40,7 @@
       </div>
     </div>
   <base-ag-grid-wrap :default-data="defaultData" :config="config"></base-ag-grid-wrap>
-  <pagination :page="config.params.page" :size="config.params.size" :total-page="config.totalPage"
-    v-on:change="changePage" v-if="config.totalPage>0" />
+  
   <popup v-if="siteConfig.isPopup" v-model:is-open="siteConfig.isPopup">
     <da01-write @complete="uploadComplete"></da01-write>
   </popup>
@@ -74,19 +73,23 @@ export default {
     
     const defaultData= [
     {
-        headerName: '사건번호', field: 'da02PK.accNo', isList: true, isWrite: false
+        headerName: '사건번호', field: 'da02PK.accNo', isList: true, isWrite: false,
+        
     },
     {
-      headerName: '이벤트코드', field: 'da02PK.eventNo', isList: true, isWrite: false
+      headerName: '이벤트코드', field: 'da02PK.eventNo', isList: true, isWrite: false,
+      listOption: { width:120 }
     },
     {
       headerName: 'DSSAD 코드', field: 'da02PK.dssadCode', isList: true, isWrite: false
     },
     {
-      headerName: '정렬순서', field: 'sortOrder', isList: true, isWrite: false
+      headerName: '정렬순서', field: 'sortOrder', isList: true, isWrite: false,
+      listOption: { width: 120 }
     },
     {
-      headerName: '서브순서', field: 'subOrder', isList: true, isWrite: false
+      headerName: '서브순서', field: 'subOrder', isList: true, isWrite: false,
+      listOption: { width: 120 }
     },
     {
       headerName: '속성', field: 'attr', isList: true, isWrite: false
@@ -132,17 +135,15 @@ export default {
       rowData:[],
       mountLoad:false,
       params:{
-        page:0,
-        size:20,
-        sort:"",
         accNo:"",
         eventNo:"",
 
       },
       loadList:()=>{
-        const result = da02Store.getDa02List(config.value.params)
+        console.log(config.value.params)
+        const result = da02Store.getDa02ListAll(config.value.params)
         result.then((response) => {
-          da02Store.da02List=response.content
+          da02Store.da02List=response
           config.value.rowData=da02Store.da02List
           config.value.totalPage=response.totalPages
           config.value.nowPage=response.number
@@ -172,11 +173,7 @@ export default {
       siteConfig.value.isPopup=false
       config.value.loadList()
     }
-    const changePage = (page) => {
 
-      config.value.params.page = page
-      config.value.loadList()
-    }
     return {
       defaultData,
       config,
@@ -184,7 +181,6 @@ export default {
       eventNo,
       writeBtnClick,
       uploadComplete,
-      changePage
     }
   }
 }

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-import {deleteAa02, getAa02List, getAa02SelectCode,Page} from "../api";
+import {deleteAa02, getAa02List, writeAa02, getAa02SelectCode,Page} from "../api";
 
 export interface aa02Type {
     aa02PK: Aa02Pk
@@ -55,6 +55,9 @@ export const Aa02Store = defineStore("Aa02Store",
             },
             delete(params : Aa02Pk[]) {
                 return deleteAa02(params)
+            },
+            write(params: aa02Type) {
+                return writeAa02(params)
             },
             getCode(gubn:String) {
                 const result=getAa02SelectCode(gubn)
