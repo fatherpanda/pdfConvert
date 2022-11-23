@@ -34,6 +34,7 @@ public class Aa02Controller {
         return resultMap;
     }
 
+    @RequestMapping(value = { "", "/" }, method = RequestMethod.POST)
     public Aa02 aa02Write(@RequestBody Aa02 aa02, HttpServletRequest request) {
         String userId = "";
         aa02.setAddDate(new Date());

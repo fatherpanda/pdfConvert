@@ -44,4 +44,18 @@ public class Da02RepositoryImpl extends QuerydslRepositorySupport implements Da0
         return from(da02).select(da02.da02PK().eventNo.as("eventNo")).groupBy(da02.da02PK().eventNo)
                 .orderBy(da02.da02PK().eventNo.asc()).fetch();
     }
+
+    @Override
+    public List<Da02> selectDa02All(Da02 da02Param) {
+        BooleanBuilder builder = new BooleanBuilder();
+        if (!da02Param.getDa02PK().getAccNo().equals("")) {
+            builder.and(da02.da02PK().accNo.contains(da02Param.getDa02PK().getAccNo()));
+        }
+        if (da02Param.getDa02PK().getEventNo() != null) {
+            builder.and(da02.da02PK().eventNo.eq(da02Param.getDa02PK().getEventNo()));
+        }
+        JPQLQuery<Da02> query = from(da02).where(builder).orderBy(da02.da02PK().eventNo.asc(), da02.sortOrder.asc());
+        List<Da02> da02List = query.fetch();
+        return da02List;
+    }
 }

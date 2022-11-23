@@ -5,7 +5,7 @@
       <button class="btn btn-primary" @click="deleteBtnClick"><i class="fa-solid fa-trash-can"></i> 삭제</button>
     </div>
   <base-ag-grid-wrap :default-data="defaultData" :config="config"></base-ag-grid-wrap>
-  <popup v-if="siteConfig.isPopup" v-model:is-open="siteConfig.isPopup">
+  <popup v-if="siteConfig.isPopup" v-model:is-open="siteConfig.isPopup" :title="siteConfig.popupTitle">
     <da01-write @complete="uploadComplete"></da01-write>
   </popup>
 </div>
@@ -27,10 +27,12 @@ export default {
   },
   setup() {
     const siteConfig = ref({
-      isPopup:false
+      isPopup:false,
+      popupTitle:''
     })
     const writeBtnClick=()=>{
       siteConfig.value.isPopup=true
+      siteConfig.value.popupTitle = 'DSSAD 등록'
     }
     const defaultData=[
     {headerName:'사고번호', field:'accNo', isList:true, isWrite:false,

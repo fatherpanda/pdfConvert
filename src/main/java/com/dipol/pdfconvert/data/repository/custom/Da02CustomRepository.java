@@ -10,6 +10,8 @@ import com.dipol.pdfconvert.data.entity.Da02;
 public interface Da02CustomRepository {
   public Page<Da02> selectDa02(Pageable pageable, Da02 da02);
 
+  public List<Da02> selectDa02All(Da02 da02);
+
   public List<Integer> selectEventNo();
 
 }

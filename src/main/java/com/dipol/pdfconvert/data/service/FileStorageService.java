@@ -49,7 +49,8 @@ public class FileStorageService {
         URL uploadPathResource = getClass().getResource(uploadPath);
         URI path = uploadPathResource.toURI();
 
-        Path fileRealPath = Paths.get(path.getPath() + fileStorageProperties.getUploadDir()).toAbsolutePath()
+        Path fileRealPath = Paths.get(Paths.get(path.getPath()) + "/" + fileStorageProperties.getUploadDir())
+                .toAbsolutePath()
                 .normalize();
         this.fileStorageLocation = fileRealPath;
         // try{
@@ -62,7 +63,7 @@ public class FileStorageService {
 
     public String storeFile(MultipartFile file) throws IOException {
         UUID uuid = UUID.randomUUID();
-        System.out.println(file.getName());
+
         String fileName = StringUtils.cleanPath(uuid + "_" + file.getOriginalFilename());
         // try{
         if (fileName.contains("..")) {
@@ -150,4 +151,5 @@ public class FileStorageService {
         return reader;
 
     }
+
 }

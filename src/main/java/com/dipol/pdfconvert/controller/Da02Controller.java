@@ -46,68 +46,22 @@ public class Da02Controller {
         return da02Service.list(pageable, da02);
     }
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public List<Da02> da02List(
+            @RequestParam(required = false) String accNo,
+            @RequestParam(required = false) Integer eventNo) {
+        Da02 da02 = new Da02();
+        Da02PK da02pk = new Da02PK();
+        da02pk.setAccNo(accNo);
+        da02pk.setEventNo(eventNo);
+        da02.setDa02PK(da02pk);
+        return da02Service.listAll(da02);
+    }
+
     @RequestMapping(value = "/eventNo")
     public List<Integer> eventNoGroup() {
 
         return da02Service.eventNoGroup();
     }
 
-    // @RequestMapping(value = { "", "/" }, method = RequestMethod.DELETE)
-    // public Map<String, Object> da01Delete(@RequestBody List<String> idList) {
-    // boolean isResult = da01Service.delete(idList);
-    // Map<String, Object> resultMap = new HashMap<>();
-    // resultMap.put("result", isResult);
-    // return resultMap;
-    // }
-
-    // @RequestMapping(value = { "", "/" }, method = RequestMethod.POST)
-    // public Map<String, Object> da01Write(Da01 da01, @RequestParam("pdfFile")
-    // MultipartFile pdfFile,
-    // HttpServletRequest request) throws URISyntaxException, IOException {
-    // String uuidFilename = fileStorageService.storeFile(pdfFile);
-    // // String uploadPath = "/";;
-    // // URL uploadPathResource =getClass().getResource(uploadPath);
-    // // URI path=uploadPathResource.toURI();
-    // //
-    // // Path fileRealPath =
-    // //
-    // Paths.get(path.getPath()+fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
-    // // UUID uuid = UUID.randomUUID();
-    // // String uuidFilename = uuid + "_" + pdfFile.getOriginalFilename();
-    // //
-    // // Path filePath = Paths.get(fileRealPath +"/" +uuidFilename);
-    // // if (!Files.exists(filePath)) {
-    // // Files.createFile(filePath);
-    // // }
-    // //
-    // // AsynchronousFileChannel fileChannel =
-    // AsynchronousFileChannel.open(filePath,
-    // // StandardOpenOption.WRITE);
-    // //
-    // // ByteBuffer buffer = ByteBuffer.allocate((int) pdfFile.getSize());
-    // //
-    // // buffer.put(pdfFile.getBytes());
-    // // buffer.flip();
-    // //
-    // // Future<Integer> operation = fileChannel.write(buffer, 0);
-    // // buffer.clear();
-
-    // // while (!operation.isDone());
-    // String userId = "";
-    // // da01.setStatusFlag("10"); //10임시등록 20항목처리중 30 처리완료
-    // da01.setAddDate(new Date());
-    // da01.setAddIp(request.getRemoteAddr());
-    // da01.setAddUser(userId);
-    // da01.setUpdateDate(new Date());
-    // da01.setUpdateIp(request.getRemoteAddr());
-    // da01.setUpdateUser(userId);
-    // da01.setDocPath(uuidFilename);
-    // da01Service.write(da01);
-    // convertList.add(da01);
-
-    // boolean isResult = false;
-    // Map<String, Object> resultMap = new HashMap<>();
-    // resultMap.put("result", isResult);
-    // return resultMap;
-    // }
 }

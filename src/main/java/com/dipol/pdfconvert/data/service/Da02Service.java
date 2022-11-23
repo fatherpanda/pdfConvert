@@ -20,6 +20,10 @@ public class Da02Service {
         return da02Repository.selectDa02(pageable, da02);
     }
 
+    public List<Da02> listAll(Da02 da02) {
+        return da02Repository.selectDa02All(da02);
+    }
+
     public boolean delete(List<String> idList) {
         boolean isResult = true;
 

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-import {getDa02List, Page, writeDa02, getDa02EventNo} from "../api";
+import {getDa02List, getDa02ListAll, Page, writeDa02, getDa02EventNo} from "../api";
 
 export interface da02Type {
     da02PK:da02PkType
@@ -21,7 +21,7 @@ export interface da02Type {
 export interface da02PkType {
     accNo: String
     eventNo: Number
-    dssadCode: String
+    dssadCode?: String
 
 }
 export const Da02Store = defineStore("Da02Store",
@@ -36,7 +36,10 @@ export const Da02Store = defineStore("Da02Store",
         },
         actions: {
             getDa02List(params : Page) {
-            return getDa02List(params)
+                return getDa02List(params)
+            },
+            getDa02ListAll(params : da02PkType) {
+                return getDa02ListAll(params)
             },
             delete(params : String) {
                 return null

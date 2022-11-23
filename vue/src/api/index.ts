@@ -1,10 +1,10 @@
 import {createApi, useApi} from './useApi'
-import {Aa02Pk} from "../store/aa02";
+import {Aa02Pk, aa02Type} from "../store/aa02";
 import {ba02Pk} from "../store/ba02";
 import {aa01Type} from "../store/aa01";
 import {ba04Type} from "../store/ba04";
 import {da01Type} from "../store/da01";
-import {da02Type} from "../store/da02";
+import {da02PkType, da02Type} from "../store/da02";
 const api = useApi()
 
 export interface upload {
@@ -38,7 +38,7 @@ async function getAa01List (params: Page) {
 async function getAa02List (params: Page) {
     const url = '/api/aa02'
     // @ts-ignore
-    const response = await api.get(url, params)
+    const response = await api.get(url, {params:params})
     return Promise.resolve(response.data)
 }
 async function getAa04List (params: Page) {
@@ -73,6 +73,12 @@ async function getDa02List (params: Page) {
     const response = await api.get(url, {params:params})
     return Promise.resolve(response.data)
 }
+async function getDa02ListAll (params: da02PkType) {
+    const url = '/api/da02/all'
+    // @ts-ignore
+    const response = await api.get(url, {params:params})
+    return Promise.resolve(response.data)
+}
 
 async function deleteAa01 (params: aa01DelType) {
     const url = '/api/aa01'
@@ -103,6 +109,12 @@ async function deleteBa04 (params: ba04Type[]) {
 
 async function writeAa01 (params: aa01Type) {
     const url = '/api/aa01'
+    // @ts-ignore
+    const response = await api.post(url, params)
+    return Promise.resolve(response.data)
+}
+async function writeAa02 (params: aa02Type) {
+    const url = '/api/aa02'
     // @ts-ignore
     const response = await api.post(url, params)
     return Promise.resolve(response.data)
@@ -162,11 +174,13 @@ export {
     getBa04List,
     getDa01List,
     getDa02List,
+    getDa02ListAll,
     deleteAa01,
     deleteAa02,
     deleteBa02,
     deleteBa04,
     writeAa01,
+    writeAa02,
     writeDa01,
     writeDa02,
     getAa02SelectCode,

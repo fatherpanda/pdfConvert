@@ -1,5 +1,5 @@
 <template>
-<div class="container h-100">
+<div class="container-fluid h-100">
   <base-ag-grid :default-data="defaultData" :config="config"></base-ag-grid>
 </div>
 </template>
@@ -28,7 +28,6 @@ export default {
         , writeOption:{type:'number'}},
       {headerName:'속성', field: 'attr', isList:true, isWrite:true
         , writeOption:{type:'text'}},
-      {headerName:'속성', field: 'attr', isList:true, isWrite:true, writeOption:{type:'text'}},
       {headerName:'명칭1', field: 'cname', isList:true, isWrite:true, writeOption:{type:'text'}},
       {headerName:'속성1변환규칙', field: 'convType', isList:true, isWrite:true, writeOption:{type:'text'}},
       {headerName:'메모', field: 'memo', isList:true, isWrite:true, writeOption:{type:'text'}},

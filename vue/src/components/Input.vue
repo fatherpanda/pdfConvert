@@ -36,17 +36,16 @@ export default {
         column = column[key]
       }
 
-      return column
+      return { column, field }
     }
     const getData = () => {
-      const column = findField()
-      const field = row.value.field
-      return column[field]
+      const row = findField()
+      
+      return row.column[row.field]
     }
     const updateData = (e) => {
-      const column = findField()
-      const field = row.value.field
-      column[field] = e.target.value
+      const row = findField()
+      row.column[row.field] = e.target.value
       emit('update:data',data)
     }
     return {
